@@ -1,0 +1,30 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "teamJoinRequests",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "teamId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "createdTimestamp", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "judgeAssignments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "judgeUid", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "evaluations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "teamId", "order": "ASCENDING" },
+        { "fieldPath": "status", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

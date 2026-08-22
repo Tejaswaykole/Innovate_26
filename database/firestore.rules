@@ -1,0 +1,122 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ==========================================
+    // HELPER FUNCTIONS
+    // ==========================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function getUserRole() {
+      // In a real scenario, role might be stored in Custom Claims (request.auth.token.role)
+      // or fetched from the users collection. Using a document fetch for security:
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && getUserRole() == 'admin';
+    }
+    
+    function isJudge() {
+      return isAuthenticated() && getUserRole() == 'judge';
+    }
+
+    function isParticipant() {
+      return isAuthenticated() && getUserRole() == 'participant';
+    }
+    
+    function isTeamMember(teamId) {
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return isAuthenticated() && userDoc.data.teamId == teamId;
+    }
+    
+    function isTeamLeader(teamId) {
+      let userDoc = get(/databases/$(database)/documents/users/$(request.auth.uid));
+      return isAuthenticated() && userDoc.data.teamId == teamId && userDoc.data.teamRole == 'leader';
+    }
+    
+    function isAssignedJudge(teamId) {
+      // Judges can only read teams they are assigned to
+      // In production, we'd query judgeAssignments or rely on a backend token
+      // For now, this is a conceptual placeholder representing the rule logic.
+      return isJudge(); 
+    }
+
+    // ==========================================
+    // RULES
+    // ==========================================
+
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      // Users can update their own profile, but cannot change their role, accountStatus, uid, or team info.
+      // We block any changes to those protected fields in the request data.
+      allow update: if isAuthenticated() && request.auth.uid == userId && (
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'accountStatus', 'uid', 'teamId', 'teamRole'])
+      );
+      // Only admins or backend can create/delete or freely modify any field
+      allow create, delete, update: if isAdmin();
+    }
+
+    match /teams/{teamId} {
+      // Public info might be readable, or restricted to participants
+      allow read: if isAuthenticated();
+      // Writes must go through the backend to enforce 6-member max, 1-female min, etc.
+      allow write: if isAdmin();
+    }
+
+    match /teamJoinRequests/{requestId} {
+      allow read: if isAuthenticated();
+      // Writes enforced via Backend to handle max-5 limit and cross-canceling
+      allow write: if isAdmin();
+    }
+
+    match /projects/{projectId} {
+      allow read: if isAuthenticated();
+      // Team leader modifies project directly? Better via backend to freeze on submit.
+      allow write: if isAdmin();
+    }
+
+    match /submissions/{submissionId} {
+      allow read: if isAdmin() || isTeamMember(resource.data.teamId) || isAssignedJudge(resource.data.teamId);
+      allow write: if isAdmin(); // Submission finalizing is a backend transaction
+    }
+
+    match /judgeAssignments/{assignmentId} {
+      allow read: if isAdmin() || (isAuthenticated() && request.auth.uid == resource.data.judgeUid);
+      allow write: if isAdmin();
+    }
+
+    match /evaluations/{evalId} {
+      allow read: if isAdmin() || (isAuthenticated() && request.auth.uid == resource.data.judgeUid);
+      allow write: if isAdmin(); // Updating scores goes through backend to calc totalScore safely
+    }
+
+    match /announcements/{announcementId} {
+      // Only published announcements can be read by non-admins
+      allow read: if isAdmin() || (isAuthenticated() && resource.data.status == 'published');
+      allow write: if isAdmin();
+    }
+    
+    match /timeline/{timelineId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    match /results/{resultId} {
+      allow read: if isAdmin() || (isAuthenticated() && resource.data.status == 'published');
+      allow write: if isAdmin();
+    }
+
+    match /certificates/{certId} {
+      allow read: if isAdmin() || (isAuthenticated() && request.auth.uid == resource.data.participantUid);
+      allow write: if isAdmin();
+    }
+
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

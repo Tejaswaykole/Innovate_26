@@ -1,0 +1,710 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HackathonOS | Build the Future</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8ea",
+                        "secondary": "#475569",
+                        "surface-container": "#eceef0",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-on-surface": "#eff1f3",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#434655",
+                        "tertiary": "#C84800",
+                        "on-secondary-container": "#57657a",
+                        "tertiary-container": "#bf4500",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-tertiary-fixed": "#370e00",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#0053db",
+                        "on-background": "#0F172A",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#0F172A",
+                        "on-tertiary-fixed-variant": "#7f2b00",
+                        "surface": "#F8FAFC",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d5e3fc",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-fixed-dim": "#ffb599",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-bright": "#F8FAFC",
+                        "inverse-primary": "#b4c5ff",
+                        "tertiary-fixed": "#ffdbce",
+                        "outline-variant": "#c3c6d7",
+                        "outline": "#737686",
+                        "on-tertiary-container": "#ffede7",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary": "#2563EB",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "background": "#F8FAFC"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter", "sans-serif"],
+                        "display-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-line::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            bottom: -24px;
+            width: 2px;
+            background-color: #e2e8f0;
+        }
+        .step-container:last-child .step-line::before {
+            display: none;
+        }
+        .timeline-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        .timeline-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+        }
+        .accordion-item.active .rotate-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary-container selection:text-white">
+<!-- TopNavBar Shared Component Integrated -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-outline-variant px-6 md:px-10 lg:px-40 py-3">
+<div class="max-w-[1280px] mx-auto flex items-center justify-between whitespace-nowrap">
+<div class="flex items-center gap-4 text-on-surface">
+<div class="size-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-on-surface text-xl font-bold leading-tight tracking-[-0.015em] font-display-lg">HackathonOS</h2>
+</div>
+<div class="hidden lg:flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-6">
+<a class="text-on-surface text-sm font-medium hover:text-primary transition-colors" href="#about">About</a>
+<a class="text-on-surface text-sm font-medium hover:text-primary transition-colors" href="#how-it-works">How It Works</a>
+<a class="text-on-surface text-sm font-medium hover:text-primary transition-colors" href="#timeline">Timeline</a>
+<a class="text-on-surface text-sm font-medium hover:text-primary transition-colors" href="#rules">Rules</a>
+<a class="text-on-surface text-sm font-medium hover:text-primary transition-colors" href="#faqs">FAQs</a>
+</nav>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-primary text-white text-sm font-bold tracking-[0.015em] hover:bg-primary/90 transition-all shadow-sm">
+                    Register Now
+                </button>
+</div>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-white px-6 md:px-10 lg:px-40 py-20 lg:py-32">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-4">
+<span class="inline-flex items-center gap-2 px-3 py-1 bg-primary-fixed text-primary text-xs font-bold uppercase tracking-widest rounded-full w-fit">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                            Live Innovation Sprint
+                        </span>
+<h1 class="text-on-surface text-5xl md:text-6xl font-black leading-tight tracking-tight font-display-lg">
+                            HackathonOS: <br><span class="text-primary">Build the Future</span>
+</h1>
+<p class="text-secondary text-lg md:text-xl max-w-[540px] leading-relaxed">
+                            Join forces with the brightest minds in a high-intensity 24-hour innovation sprint. Identify real-world pain points and engineer the solutions of tomorrow.
+                        </p>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="px-8 py-4 bg-primary text-white font-bold rounded-xl hover:scale-105 transition-transform shadow-lg shadow-primary/20">
+                            Register Now
+                        </button>
+<button class="px-8 py-4 bg-surface-container text-on-surface font-bold rounded-xl hover:bg-surface-container-high transition-colors">
+                            Explore Hackathon
+                        </button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/5 rounded-[2rem] blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+<img class="relative w-full aspect-[4/3] object-cover rounded-[2rem] shadow-2xl border border-white/50" data-alt="A high-tech, futuristic collaborative workspace with diverse teams of university students working on laptops. The room features glowing neon accents in deep blue, large data visualization screens in the background, and a clean, high-key light mode aesthetic. The atmosphere is energetic and focused, representing a modern innovation marathon." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKhRDJMCo92lAIoLS9tp9C--c_qY6eWvCcpoOcWyQQ6dOKpCCmfh_nRnLzuNoLJkgQkl91QhR-K7dBQY7w1kciBcvrpoNFC1AiZDBtltXRN-I5iW854G0twZdh9z_RJLP5c-p_5bSpIwEVokXiGfY4-y2FSRR2wTqpyICBGhoxiefrrvs3xaTuKULc1v90oGbd7QkV3t7WNL5OMhlvJt4HGx6m1g4xqXGHp4ad8nZ9XQagq03BrZdc">
+</div>
+</div>
+<!-- Atmospheric background element -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent -z-10 pointer-events-none"></div>
+</section>
+<!-- About Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-surface" id="about">
+<div class="max-w-[1280px] mx-auto">
+<div class="flex flex-col gap-12">
+<div class="max-w-2xl">
+<h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-2">About the Hackathon</h2>
+<h3 class="text-on-surface text-3xl md:text-4xl font-bold font-display-lg mb-6 leading-tight">24 Hours of Pure Innovation</h3>
+<p class="text-secondary text-lg">Experience a format designed for rapid prototyping and creative problem solving. We believe the best ideas emerge under constraints of time and collaboration.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-8 bg-white rounded-2xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="timer">timer</span>
+</div>
+<h4 class="text-on-surface text-xl font-bold mb-3">Format</h4>
+<p class="text-secondary leading-relaxed">24-hour intensive sprint from ideation to deployment. Non-stop creation and rapid iterations.</p>
+</div>
+<div class="p-8 bg-white rounded-2xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="architecture">architecture</span>
+</div>
+<h4 class="text-on-surface text-xl font-bold mb-3">Open Architecture</h4>
+<p class="text-secondary leading-relaxed">Build on any tech stack. Whether it's Web3, AI, Cloud, or Hardware, you choose your weapons.</p>
+</div>
+<div class="p-8 bg-white rounded-2xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl" data-icon="ads_click">ads_click</span>
+</div>
+<h4 class="text-on-surface text-xl font-bold mb-3">Core Objectives</h4>
+<p class="text-secondary leading-relaxed">Focus on innovation, scalability, and impact. We look for solutions that solve real-world problems.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Problem Statement Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-white">
+<div class="max-w-[1280px] mx-auto">
+<div class="rounded-[2.5rem] p-10 md:p-20 relative overflow-hidden group bg-primary-container">
+<div class="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto gap-8">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-white font-bold text-xs uppercase tracking-widest">
+                            Freedom to Innovate
+                        </div>
+<h2 class="text-white text-4xl md:text-6xl font-black font-display-lg leading-tight">Your Problem, <br>Your Solution.</h2>
+<p class="text-on-primary-container text-lg md:text-xl leading-relaxed opacity-90">
+                            We provide the platform; you provide the vision. No predefined problem statements. Identify a real-world pain point that matters to you and build the solution from scratch.
+                        </p>
+<button class="px-10 py-4 bg-white text-primary font-bold rounded-xl hover:bg-primary-fixed transition-all hover:shadow-xl shadow-black/20">Learn More About Scope</button>
+</div>
+<!-- Decorative patterns -->
+<div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden">
+<div class="absolute -top-1/4 -right-1/4 w-[500px] h-[500px] border-[60px] border-white rounded-full"></div>
+<div class="absolute -bottom-1/4 -left-1/4 w-[300px] h-[300px] border-[40px] border-white rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-surface" id="how-it-works">
+<div class="max-w-[1280px] mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-2">Process</h2>
+<h3 class="text-on-surface text-3xl md:text-4xl font-bold font-display-lg">The 8-Step Journey</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+<!-- Steps -->
+<div class="flex flex-col gap-4 relative">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">1</div>
+<h4 class="text-on-surface font-bold text-lg">Register</h4>
+<p class="text-secondary text-sm">Individual sign-up via the portal to begin your journey.</p>
+</div>
+<div class="flex flex-col gap-4 relative">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">2</div>
+<h4 class="text-on-surface font-bold text-lg">Create Team</h4>
+<p class="text-secondary text-sm">Form or join a team using unique team codes.</p>
+</div>
+<div class="flex flex-col gap-4 relative">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">3</div>
+<h4 class="text-on-surface font-bold text-lg">Choose Problem</h4>
+<p class="text-secondary text-sm">Identify a gap and define your unique problem statement.</p>
+</div>
+<div class="flex flex-col gap-4 relative">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">4</div>
+<h4 class="text-on-surface font-bold text-lg">Build</h4>
+<p class="text-secondary text-sm">Collaborate and code for 24 hours to create your prototype.</p>
+</div>
+<div class="flex flex-col gap-4 relative">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">5</div>
+<h4 class="text-on-surface font-bold text-lg">Submit</h4>
+<p class="text-secondary text-sm">Upload all required files through the submission portal.</p>
+</div>
+<div class="flex flex-col gap-4 relative">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">6</div>
+<h4 class="text-on-surface font-bold text-lg">Judging</h4>
+<p class="text-secondary text-sm">Expert review panel evaluates your work based on criteria.</p>
+</div>
+<div class="flex flex-col gap-4 relative">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">7</div>
+<h4 class="text-on-surface font-bold text-lg">Winners</h4>
+<p class="text-secondary text-sm">Public announcement of the top innovation champions.</p>
+</div>
+<div class="flex flex-col gap-4 relative">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20">8</div>
+<h4 class="text-on-surface font-bold text-lg">Certificates</h4>
+<p class="text-secondary text-sm">All participants receive verifiable digital recognition.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Information Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-white border-y border-outline-variant">
+<div class="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-16">
+<div class="flex-1 space-y-8">
+<h3 class="text-on-surface text-4xl font-bold font-display-lg leading-tight">Team Dynamics &amp; Formation</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-lg bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Size: 2–6 Members</h5>
+<p class="text-secondary">Flexible team sizes to accommodate diverse skill sets and collaborative needs.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-lg bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="female">female</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Compulsory Female Member</h5>
+<p class="text-secondary">Inclusion is at our core. Every team must have at least one female participant.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-lg bg-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="stars">stars</span>
+</div>
+<div>
+<h5 class="font-bold text-on-surface">Permanent Team Leader</h5>
+<p class="text-secondary">One point of contact for all coordination throughout the event lifecycle.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full max-w-md">
+<div class="bg-surface-container rounded-3xl p-8 border border-outline-variant">
+<img class="w-full h-auto object-cover rounded-2xl shadow-sm mb-6" data-alt="A stylized minimalist illustration of a diverse group of college students—men and women—working collaboratively around a large desk with digital blueprints. The style is clean, vector-based with a soft color palette of light blue, white, and subtle orange accents, reflecting a professional and inclusive environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJyOIFhYDNROWboiTHRPwWSsJik4AF4IXH2F1eHvMFwSknmC1Zn7thT0Fla6mP8gkHkNq6u2lqMq2TELB0gW70kPUyuibaOapLR20595cfISJMNI5FEFAM4CKx7e5Llu_DydPQIh6lxBt8pJFL7pkyIaCv7zQWtKPbT8sf9r_XYa68eVStqrtvytbIe_gsZR2xKIElTwi7m_j-3uqcze8vn9aCrMxsm9lLTkN5SKQbg3BySMeFSMLr">
+<div class="bg-white p-6 rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-4">
+<span class="text-sm font-bold text-on-surface">Team Code #HOS-2024</span>
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">Active</span>
+</div>
+<div class="flex -space-x-3">
+<div class="size-10 rounded-full border-2 border-white bg-slate-300"></div>
+<div class="size-10 rounded-full border-2 border-white bg-slate-400"></div>
+<div class="size-10 rounded-full border-2 border-white bg-slate-500"></div>
+<div class="size-10 rounded-full border-2 border-white bg-primary text-white flex items-center justify-center text-xs font-bold">+2</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-surface overflow-hidden" id="timeline">
+<div class="max-w-[1280px] mx-auto">
+<div class="mb-16">
+<h3 class="text-on-surface text-3xl md:text-4xl font-bold font-display-lg">The Event Timeline</h3>
+<p class="text-secondary mt-2">Mark your calendars for the innovation journey.</p>
+</div>
+<div class="timeline-container overflow-x-auto pb-10">
+<div class="flex gap-0 min-w-[1200px]">
+<!-- Timeline Item -->
+<div class="flex-1 relative pt-10 border-t-4 border-outline-variant">
+<div class="absolute -top-[14px] left-0 size-6 rounded-full bg-primary border-4 border-white shadow-sm"></div>
+<div class="pr-8">
+<h5 class="font-black text-primary mb-1">Oct 15 - Nov 5</h5>
+<h4 class="font-bold text-on-surface text-lg">Registration</h4>
+<p class="text-secondary text-sm mt-2">Initial signup and individual profile completion.</p>
+</div>
+</div>
+<div class="flex-1 relative pt-10 border-t-4 border-primary">
+<div class="absolute -top-[14px] left-0 size-6 rounded-full bg-primary border-4 border-white shadow-sm"></div>
+<div class="pr-8">
+<h5 class="font-black text-primary mb-1">Nov 6 - Nov 10</h5>
+<h4 class="font-bold text-on-surface text-lg">Team Formation</h4>
+<p class="text-secondary text-sm mt-2">Connecting with peers and finalizing your squad.</p>
+</div>
+</div>
+<div class="flex-1 relative pt-10 border-t-4 border-outline-variant">
+<div class="absolute -top-[14px] left-0 size-6 rounded-full bg-primary border-4 border-white shadow-sm"></div>
+<div class="pr-8">
+<h5 class="font-black text-primary mb-1">Nov 15, 09:00 AM</h5>
+<h4 class="font-bold text-on-surface text-lg">Hacking Begins</h4>
+<p class="text-secondary text-sm mt-2">The 24-hour countdown starts now!</p>
+</div>
+</div>
+<div class="flex-1 relative pt-10 border-t-4 border-outline-variant">
+<div class="absolute -top-[14px] left-0 size-6 rounded-full bg-primary border-4 border-white shadow-sm"></div>
+<div class="pr-8">
+<h5 class="font-black text-primary mb-1">Nov 16, 09:00 AM</h5>
+<h4 class="font-bold text-on-surface text-lg">Submission</h4>
+<p class="text-secondary text-sm mt-2">Deadline for all project deliverables.</p>
+</div>
+</div>
+<div class="flex-1 relative pt-10 border-t-4 border-outline-variant">
+<div class="absolute -top-[14px] left-0 size-6 rounded-full bg-primary border-4 border-white shadow-sm"></div>
+<div class="pr-8">
+<h5 class="font-black text-primary mb-1">Nov 20</h5>
+<h4 class="font-bold text-on-surface text-lg">Ceremony</h4>
+<p class="text-secondary text-sm mt-2">Announcement of winners and certificates.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Project Submission Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-white">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+<div>
+<h3 class="text-on-surface text-4xl font-bold font-display-lg leading-tight mb-8">Submission Requirements</h3>
+<p class="text-secondary text-lg mb-12">To ensure fair judging, all teams must provide a comprehensive package of their project's progress and final outcome.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-5 rounded-2xl bg-surface-container-low border border-outline-variant">
+<span class="material-symbols-outlined text-primary mb-3" data-icon="description">description</span>
+<h6 class="font-bold text-on-surface">Title &amp; Description</h6>
+<p class="text-xs text-secondary mt-1">Concise and compelling summary of the solution.</p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-low border border-outline-variant">
+<span class="material-symbols-outlined text-primary mb-3" data-icon="presentation_chart">mobile_code</span>
+<h6 class="font-bold text-on-surface">PPT Presentation</h6>
+<p class="text-xs text-secondary mt-1">Pitch deck detailing problem, solution, and scale.</p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-low border border-outline-variant">
+<span class="material-symbols-outlined text-primary mb-3" data-icon="code_blocks">code_blocks</span>
+<h6 class="font-bold text-on-surface">GitHub Repo</h6>
+<p class="text-xs text-secondary mt-1">Public repository link with all source code.</p>
+</div>
+<div class="p-5 rounded-2xl bg-surface-container-low border border-outline-variant">
+<span class="material-symbols-outlined text-primary mb-3" data-icon="videocam">videocam</span>
+<h6 class="font-bold text-on-surface">Demo Video</h6>
+<p class="text-xs text-secondary mt-1">Short video with audio explanation of features.</p>
+</div>
+</div>
+</div>
+<div class="relative bg-on-surface text-white rounded-[2rem] p-10 flex flex-col justify-end min-h-[400px] overflow-hidden">
+<webgl-shader class="absolute inset-0 w-full h-full opacity-30" src="{{DATA:ANIMATION:ANIMATION_1}}"></webgl-shader>
+<div class="relative z-10 space-y-4">
+<h4 class="text-2xl font-bold">Ready to submit?</h4>
+<p class="text-white/70">The portal will open 2 hours before the final deadline. Late submissions will not be accepted under any circumstances.</p>
+<button class="mt-4 px-6 py-3 bg-primary text-white font-bold rounded-lg w-fit flex items-center gap-2 group">
+                            Go to Submission Portal
+                            <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Rules & Guidelines Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-surface" id="rules">
+<div class="max-w-[1280px] mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<h3 class="text-on-surface text-3xl md:text-4xl font-bold font-display-lg mb-4">Rules &amp; Guidelines</h3>
+<p class="text-secondary">Integrity and sportsmanship are the foundation of HackathonOS.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="groups_2">groups_2</span>
+</div>
+<h4 class="text-xl font-bold text-on-surface">Team Rules</h4>
+</div>
+<ul class="space-y-4 text-secondary text-sm">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                One student can only be a part of one team.
+                            </li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                Cross-college teams are permitted and encouraged.
+                            </li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                Team Leader is responsible for all communications.
+                            </li>
+</ul>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<h4 class="text-xl font-bold text-on-surface">Innovation</h4>
+</div>
+<ul class="space-y-4 text-secondary text-sm">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                All code must be written during the 24-hour hacking window.
+                            </li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                Use of open-source libraries is permitted with attribution.
+                            </li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                Pre-existing projects are strictly disqualified.
+                            </li>
+</ul>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="assignment">assignment</span>
+</div>
+<h4 class="text-xl font-bold text-on-surface">Submission</h4>
+</div>
+<ul class="space-y-4 text-secondary text-sm">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                Final package must contain all 5 required elements.
+                            </li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                Video demo must be under 3 minutes with clear audio.
+                            </li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-primary shrink-0" data-icon="check_circle">check_circle</span>
+                                GitHub repo must be public for evaluation.
+                            </li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Recognition Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-white">
+<div class="max-w-[1280px] mx-auto">
+<div class="text-center mb-16">
+<h3 class="text-on-surface text-3xl md:text-4xl font-bold font-display-lg">Recognition &amp; Awards</h3>
+<p class="text-secondary mt-2">Celebrating innovation, effort, and excellence.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+<div class="p-10 rounded-[2rem] bg-on-surface text-white flex flex-col justify-between">
+<div>
+<div class="size-16 rounded-full bg-primary flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-3xl" data-icon="emoji_events">emoji_events</span>
+</div>
+<h4 class="text-3xl font-bold font-display-lg mb-4">Top 2 Teams</h4>
+<p class="text-white/70 text-lg">The most outstanding solutions will be selected based on innovation, technical complexity, and impact. Winners receive prestigious medals and direct mentoring opportunities.</p>
+</div>
+<div class="mt-12 flex gap-4">
+<div class="flex-1 p-4 rounded-xl bg-white/5 border border-white/10 text-center">
+<div class="text-primary font-bold text-2xl">01</div>
+<div class="text-[10px] uppercase tracking-widest text-white/50">Champion</div>
+</div>
+<div class="flex-1 p-4 rounded-xl bg-white/5 border border-white/10 text-center">
+<div class="text-white font-bold text-2xl">02</div>
+<div class="text-[10px] uppercase tracking-widest text-white/50">Runner Up</div>
+</div>
+</div>
+</div>
+<div class="p-10 rounded-[2rem] bg-surface-container border border-outline-variant flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<div class="size-16 rounded-full bg-white flex items-center justify-center mb-8 shadow-sm">
+<span class="material-symbols-outlined text-3xl text-primary" data-icon="card_membership">card_membership</span>
+</div>
+<h4 class="text-3xl font-bold font-display-lg mb-4">Digital Certificates</h4>
+<p class="text-secondary text-lg">Every participant who completes a successful submission will receive a verifiable digital certificate of participation, perfect for showcasing on LinkedIn and portfolios.</p>
+</div>
+<div class="relative z-10 mt-12 bg-white p-6 rounded-2xl border border-outline-variant shadow-sm rotate-3 translate-x-12 translate-y-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="size-10 bg-primary/10 rounded-full"></div>
+<div class="space-y-1">
+<div class="h-2 w-24 bg-surface-container rounded"></div>
+<div class="h-2 w-16 bg-surface-container rounded"></div>
+</div>
+</div>
+<div class="h-4 w-full bg-surface-container rounded mb-2"></div>
+<div class="h-4 w-3/4 bg-surface-container rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQs Section -->
+<section class="px-6 md:px-10 lg:px-40 py-24 bg-surface" id="faqs">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
+<div class="lg:col-span-1">
+<h3 class="text-on-surface text-3xl font-bold font-display-lg leading-tight">Frequently Asked Questions</h3>
+<p class="text-secondary mt-4">Everything you need to know about the event. Can't find what you're looking for? Reach out to our team.</p>
+<button class="mt-8 text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                        Contact Support
+                        <span class="material-symbols-outlined" data-icon="arrow_right_alt">arrow_right_alt</span>
+</button>
+</div>
+<div class="lg:col-span-2 space-y-4">
+<!-- FAQ Items -->
+<div class="accordion-item bg-white border border-outline-variant rounded-xl overflow-hidden active">
+<button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+<span class="font-bold text-on-surface">Can individuals without a team register?</span>
+<span class="material-symbols-outlined rotate-icon transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="text-secondary text-sm">Yes, individuals can register. However, you must form or join a team of 2–6 members before the hacking begins.</p>
+</div>
+</div>
+<div class="accordion-item bg-white border border-outline-variant rounded-xl overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+<span class="font-bold text-on-surface">Is there a registration fee?</span>
+<span class="material-symbols-outlined rotate-icon transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="text-secondary text-sm">No, registration is completely free for all verified university students.</p>
+</div>
+</div>
+<div class="accordion-item bg-white border border-outline-variant rounded-xl overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+<span class="font-bold text-on-surface">What if I don't have a female member?</span>
+<span class="material-symbols-outlined rotate-icon transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="text-secondary text-sm">A female member is compulsory for team validation. We encourage reaching out to the community to form inclusive teams.</p>
+</div>
+</div>
+<div class="accordion-item bg-white border border-outline-variant rounded-xl overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+<span class="font-bold text-on-surface">Is physical presence required?</span>
+<span class="material-symbols-outlined rotate-icon transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+<div class="accordion-content px-6 pb-6">
+<p class="text-secondary text-sm">This is a hybrid event. While we encourage coming to the campus for the atmosphere, remote participation is supported.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact & Footer -->
+<footer class="px-6 md:px-10 lg:px-40 py-20 bg-on-surface text-white">
+<div class="max-w-[1280px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 pb-16 border-b border-white/10">
+<div class="col-span-1 md:col-span-1 space-y-6">
+<div class="flex items-center gap-3">
+<div class="size-6 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.8261 30.5736C16.7203 29.8826 20.2244 29.4783 24 29.4783C27.7756 29.4783 31.2797 29.8826 34.1739 30.5736C36.9144 31.2278 39.9967 32.7669 41.3563 33.8352L24.8486 7.36089C24.4571 6.73303 23.5429 6.73303 23.1514 7.36089L6.64374 33.8352C8.00331 32.7669 11.0856 31.2278 13.8261 30.5736Z" fill="currentColor"></path>
+<path clip-rule="evenodd" d="M39.998 35.764C39.9944 35.7463 39.9875 35.7155 39.9748 35.6706C39.9436 35.5601 39.8949 35.4259 39.8346 35.2825C39.8168 35.2403 39.7989 35.1993 39.7813 35.1602C38.5103 34.2887 35.9788 33.0607 33.7095 32.5189C30.9875 31.8691 27.6413 31.4783 24 31.4783C20.3587 31.4783 17.0125 31.8691 14.2905 32.5189C12.0012 33.0654 9.44505 34.3104 8.18538 35.1832C8.17384 35.2075 8.16216 35.233 8.15052 35.2592C8.09919 35.3751 8.05721 35.4886 8.02977 35.589C8.00356 35.6848 8.00039 35.7333 8.00004 35.7388C8.00004 35.739 8 35.7393 8.00004 35.7388C8.00004 35.7641 8.0104 36.0767 8.68485 36.6314C9.34546 37.1746 10.4222 37.7531 11.9291 38.2772C14.9242 39.319 19.1919 40 24 40C28.8081 40 33.0758 39.319 36.0709 38.2772C37.5778 37.7531 38.6545 37.1746 39.3151 36.6314C39.9006 36.1499 39.9857 35.8511 39.998 35.764ZM4.95178 32.7688L21.4543 6.30267C22.6288 4.4191 25.3712 4.41909 26.5457 6.30267L43.0534 32.777C43.0709 32.8052 43.0878 32.8338 43.104 32.8629L41.3563 33.8352C43.104 32.8629 43.1038 32.8626 43.104 32.8629L43.1051 32.865L43.1065 32.8675L43.1101 32.8739L43.1199 32.8918C43.1276 32.906 43.1377 32.9246 43.1497 32.9473C43.1738 32.9925 43.2062 33.0545 43.244 33.1299C43.319 33.2792 43.4196 33.489 43.5217 33.7317C43.6901 34.1321 44 34.9311 44 35.7391C44 37.4427 43.003 38.7775 41.8558 39.7209C40.6947 40.6757 39.1354 41.4464 37.385 42.0552C33.8654 43.2794 29.133 44 24 44C18.867 44 14.1346 43.2794 10.615 42.0552C8.86463 41.4464 7.30529 40.6757 6.14419 39.7209C4.99695 38.7775 3.99999 37.4427 3.99999 35.7391C3.99999 34.8725 4.29264 34.0922 4.49321 33.6393C4.60375 33.3898 4.71348 33.1804 4.79687 33.0311C4.83898 32.9556 4.87547 32.8935 4.9035 32.8471C4.91754 32.8238 4.92954 32.8043 4.93916 32.7889L4.94662 32.777L4.95178 32.7688ZM35.9868 29.004L24 9.77997L12.0131 29.004C12.4661 28.8609 12.9179 28.7342 13.3617 28.6282C16.4281 27.8961 20.0901 27.4783 24 27.4783C27.9099 27.4783 31.5719 27.8961 34.6383 28.6282C35.082 28.7342 35.5339 28.8609 35.9868 29.004Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<span class="text-xl font-bold font-display-lg">HackathonOS</span>
+</div>
+<p class="text-white/60 text-sm">An annual celebration of technology, creativity, and the power of collaboration among the next generation of engineers.</p>
+</div>
+<div>
+<h6 class="font-bold mb-6">Navigation</h6>
+<ul class="space-y-4 text-white/60 text-sm">
+<li class=""><a class="hover:text-primary transition-colors" href="#about">About</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#how-it-works">Process</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#timeline">Timeline</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#rules">Rules</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-bold mb-6">Support</h6>
+<ul class="space-y-4 text-white/60 text-sm">
+<li class=""><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Code of Conduct</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li class=""><a class="hover:text-primary transition-colors" href="#faqs">FAQs</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-bold mb-6">Organizer Info</h6>
+<div class="space-y-4 text-white/60 text-sm">
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
+                                hello@hackathonos.edu
+                            </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+                                Innovation Hub, University Campus
+                            </p>
+<div class="flex gap-4 pt-4">
+<div class="size-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="public">public</span>
+</div>
+<div class="size-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-lg" data-icon="alternate_email">alternate_email</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-8 text-center text-white/40 text-xs">
+                    © 2024 HackathonOS. All Rights Reserved. Built with passion for innovation.
+                </div>
+</div>
+</footer>
+</main>
+<script>
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all items
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Toggle clicked item
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

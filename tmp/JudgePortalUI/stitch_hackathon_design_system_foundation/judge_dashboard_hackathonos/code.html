@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Judge Dashboard - HackathonOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2563eb",
+                        "secondary-fixed": "#d5e3fc",
+                        "background": "#f7f9fb",
+                        "secondary": "#515f74",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface-container": "#eceef0",
+                        "tertiary-container": "#bf4500",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "tertiary": "#973400",
+                        "surface-dim": "#d8dadc",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#d5e3fc",
+                        "surface": "#f7f9fb",
+                        "on-background": "#191c1e",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#0053db",
+                        "on-surface": "#191c1e",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#004ac6",
+                        "on-primary-container": "#eeefff",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7f2b00",
+                        "on-secondary-container": "#57657a",
+                        "surface-variant": "#e0e3e5",
+                        "on-tertiary-container": "#ffede7",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed": "#dbe1ff",
+                        "outline-variant": "#c3c6d7",
+                        "inverse-on-surface": "#eff1f3",
+                        "inverse-surface": "#2d3133",
+                        "on-surface-variant": "#434655",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-tertiary-fixed": "#370e00",
+                        "tertiary-fixed-dim": "#ffb599",
+                        "on-primary-fixed": "#00174b",
+                        "surface-bright": "#f7f9fb",
+                        "outline": "#737686",
+                        "on-secondary-fixed-variant": "#3a485b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "xxl": "64px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "caption": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F8FAFC; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Subtle shadow for Level 1 Surfaces */
+        .elevation-1 {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+        /* Slightly deeper shadow for Level 2 (Hover/Active) */
+        .elevation-2:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-sm border-b border-outline-variant/30 sticky top-0 w-full z-50">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto hidden md:flex">
+<div class="flex items-center gap-lg">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">
+                    HackathonJudge
+                </div>
+<div class="flex gap-md ml-lg">
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary pb-1 font-bold font-body-md text-body-md hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all px-2 rounded-t-sm" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md pb-1 px-2 hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-sm" href="#">Assigned Teams</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md pb-1 px-2 hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-sm" href="#">Evaluation History</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md pb-1 px-2 hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-sm" href="#">Announcements</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low rounded-full cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low rounded-full cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30 ml-2">
+<img alt="Judge Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a female judge in a well-lit modern office environment. She has a confident, warm expression. The lighting is soft and bright, fitting a light-mode corporate SaaS aesthetic. Deep blues and clean whites dominate the color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1uLIm22mdEHX42Qq_gGnge7LoEMxiHo8yQWuaeIXiIuTDY6ql0u9BEg5LFaPBvuU_avBiJ3PDMEnhJ5tdFhpi1ZJHNI1WQRJLEMU5dm_1k_nZ3b1RI8BGZSM7XdJSUxoRKoahKX3o2R9UNXO3aFDrbdeubFJ4YAdCVneoW1W6e9hjG11XEeEeEzy4Qnp58VwzZevPBziSbakyjmz_W2n7aNXWI1MDEXlnCj5wUNFIVJcsES10mUrc"/>
+</div>
+</div>
+</div>
+<!-- Mobile Nav Placeholder (Hidden on md+) -->
+<div class="flex md:hidden justify-between items-center px-4 py-4 w-full">
+<div class="font-headline-md text-headline-md-mobile font-bold text-primary">
+                    HackathonJudge
+            </div>
+<button class="p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter py-xl">
+<!-- Welcome Section -->
+<header class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg md:text-display-lg text-on-surface mb-2">Welcome back, Sarah.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Here is an overview of your judging queue for the Collegiate Hackathon Series.</p>
+</div>
+<!-- Quick Actions -->
+<div class="flex flex-col sm:flex-row gap-sm mt-4 md:mt-0">
+<button class="bg-surface-container-lowest text-primary border border-primary px-4 py-2 rounded font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-fixed transition-colors elevation-1 cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+                    View Evaluation Guidelines
+                </button>
+<button class="bg-primary-container text-on-primary border border-transparent px-4 py-2 rounded font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary transition-colors elevation-1 cursor-pointer active:scale-95 duration-150 shadow-sm">
+                    Continue Next Evaluation
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Statistics Cards (Span 12 on mobile, 4 on desktop) -->
+<div class="md:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-md mb-md">
+<!-- Stat 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md elevation-1 elevation-2 transition-all flex flex-col">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-primary">groups</span>
+<span class="font-caption text-caption uppercase tracking-wider">Assigned Teams</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">12</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md elevation-1 elevation-2 transition-all flex flex-col">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-tertiary-container">pending_actions</span>
+<span class="font-caption text-caption uppercase tracking-wider">Pending Evals</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">5</div>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md elevation-1 elevation-2 transition-all flex flex-col">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-secondary">task_alt</span>
+<span class="font-caption text-caption uppercase tracking-wider">Completed</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">7</div>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-md elevation-1 elevation-2 transition-all flex flex-col justify-between">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-primary">trending_up</span>
+<span class="font-caption text-caption uppercase tracking-wider">Progress</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface mb-2">58%</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5">
+<div class="bg-primary-container h-1.5 rounded-full" style="width: 58%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Priority Pending (Span 8) -->
+<section class="md:col-span-8 bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg elevation-1 flex flex-col">
+<div class="flex items-center justify-between mb-lg border-b border-outline-variant/20 pb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary-container filled-icon">error</span>
+                        Priority Pending
+                    </h2>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">View All Queue</a>
+</div>
+<div class="flex flex-col gap-md flex-grow">
+<!-- Team Card 1 -->
+<div class="border border-outline-variant/40 rounded-lg p-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-primary-container/50 transition-colors elevation-2 bg-surface">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 rounded bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-md font-bold">A</div>
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Team Alpha</h3>
+<p class="font-caption text-caption text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">category</span> Track: FinTech
+                                </p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-1 rounded-full font-caption text-caption text-[10px] uppercase font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span> Needs Review
+                            </span>
+<button class="bg-primary-container text-on-primary px-3 py-1.5 rounded font-label-md text-label-md hover:bg-primary transition-colors cursor-pointer active:scale-95 duration-150">
+                                Evaluate
+                            </button>
+</div>
+</div>
+<!-- Team Card 2 -->
+<div class="border border-outline-variant/40 rounded-lg p-md flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:border-primary-container/50 transition-colors elevation-2 bg-surface">
+<div class="flex gap-4 items-center">
+<div class="w-12 h-12 rounded bg-surface-container-high flex items-center justify-center text-on-surface font-headline-md font-bold">Q</div>
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Team Quantum</h3>
+<p class="font-caption text-caption text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">category</span> Track: AI / ML
+                                </p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-1 rounded-full font-caption text-caption text-[10px] uppercase font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span> Needs Review
+                            </span>
+<button class="bg-primary-container text-on-primary px-3 py-1.5 rounded font-label-md text-label-md hover:bg-primary transition-colors cursor-pointer active:scale-95 duration-150">
+                                Evaluate
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity (Span 4) -->
+<section class="md:col-span-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-lg elevation-1 flex flex-col">
+<div class="flex items-center justify-between mb-lg border-b border-outline-variant/20 pb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2 text-[20px]">
+<span class="material-symbols-outlined text-secondary">history</span>
+                        Recent Activity
+                    </h2>
+</div>
+<div class="flex flex-col gap-4 flex-grow relative">
+<!-- Vertical Line for timeline effect -->
+<div class="absolute left-[11px] top-2 bottom-2 w-px bg-outline-variant/30 hidden sm:block"></div>
+<!-- Activity Item 1 -->
+<div class="flex gap-3 relative z-10">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center border-2 border-surface-container-lowest flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-[12px] text-on-secondary-fixed">check</span>
+</div>
+<div class="flex-grow pb-3 border-b border-outline-variant/10">
+<p class="font-body-md text-body-md text-on-surface">Evaluated <span class="font-semibold">Team Cyber</span></p>
+<div class="flex justify-between items-center mt-1">
+<span class="font-caption text-caption text-on-surface-variant">2 hours ago</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded font-label-md text-label-md text-[12px]">Score: 85/100</span>
+</div>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex gap-3 relative z-10">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center border-2 border-surface-container-lowest flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-[12px] text-on-secondary-fixed">check</span>
+</div>
+<div class="flex-grow pb-3 border-b border-outline-variant/10">
+<p class="font-body-md text-body-md text-on-surface">Evaluated <span class="font-semibold">Team Nexus</span></p>
+<div class="flex justify-between items-center mt-1">
+<span class="font-caption text-caption text-on-surface-variant">Yesterday</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded font-label-md text-label-md text-[12px]">Score: 92/100</span>
+</div>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex gap-3 relative z-10">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center border-2 border-surface-container-lowest flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-[12px] text-on-secondary-fixed">check</span>
+</div>
+<div class="flex-grow">
+<p class="font-body-md text-body-md text-on-surface">Evaluated <span class="font-semibold">Team Spark</span></p>
+<div class="flex justify-between items-center mt-1">
+<span class="font-caption text-caption text-on-surface-variant">Yesterday</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded font-label-md text-label-md text-[12px]">Score: 78/100</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-lowest w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center gap-md max-w-container-max mx-auto mt-auto border-t border-outline-variant/20 flat no shadows">
+<div class="font-label-md text-label-md font-semibold text-secondary">
+            © 2024 Collegiate Hackathon Series. All Rights Reserved.
+        </div>
+<div class="flex gap-md font-caption text-caption text-on-secondary-container">
+<a class="hover:text-primary transition-colors transition-opacity hover:opacity-80" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors transition-opacity hover:opacity-80" href="#">Judging Guide</a>
+<a class="hover:text-primary transition-colors transition-opacity hover:opacity-80" href="#">Support</a>
+</div>
+</footer>
+</body></html>

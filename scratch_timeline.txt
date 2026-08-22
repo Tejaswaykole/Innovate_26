@@ -1,0 +1,139 @@
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return 'TBA';
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, { 
+      month: 'short', day: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    });
+  };
+
+  // Determine current stage based on Admin Panel setting
+  let currentStage = config?.currentTimelineStage || 1;
+  let progressWidth = `${currentStage * 20}%`;
+
+  return (
+    <div className="bg-surface min-h-screen text-on-surface font-sans selection:bg-primary/20">
+      <div className="flex pt-16 min-h-screen">
+        <ParticipantSidebar activeTab="timeline" />
+        <main className="flex-1 md:ml-64 p-lg max-w-container-max mx-auto w-full">
+          <div className="max-w-4xl mx-auto mt-8">
+            <motion.section 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm"
+            >
+              <div className="flex justify-between items-center mb-md">
+                <h2 className="font-headline-md text-headline-md text-on-background flex items-center gap-sm">
+                  <span className="material-symbols-outlined text-primary">route</span>
+                  Hackathon Progress
+                </h2>
+                <span className="font-caption text-caption bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full">
+                  Stage {currentStage} of 5
+                </span>
+              </div>
+              
+              {loading ? (
+                <div className="animate-pulse h-32 bg-surface-container-high rounded-xl w-full mt-8"></div>
+              ) : (
+                <div className="relative pt-xl pb-16 px-sm mt-8">
+                  <div className="absolute top-1/2 left-sm right-sm h-1.5 bg-surface-container-highest -translate-y-1/2 z-0 rounded-full overflow-hidden">
+                      <motion.div 
+                          initial={{ width: 0 }}
+                          animate={{ width: progressWidth }}
+                          transition={{ duration: 1.5, ease: 'easeOut', delay: 0.2 }}
+                          className="h-full bg-gradient-to-r from-primary to-primary-fixed rounded-full"
+                      ></motion.div>
+                  </div>
+                  <div className="relative z-10 flex justify-between">
+                    {/* Stage 1 */}
+                    <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.3, type: 'spring' }}
+                        className="flex flex-col items-center gap-sm relative group cursor-pointer"
+                    >
+                      {currentStage === 1 && <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-100 transition-opacity"></div>}
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center border-4 border-surface-container-lowest shadow-lg relative z-10 ${currentStage >= 1 ? 'bg-primary text-on-primary ring-4 ring-primary/30' : 'bg-surface-container-high text-on-surface-variant'}`}>
+                        <span className="material-symbols-outlined text-[20px]">groups</span>
+                      </div>
+                      <div className="absolute top-14 flex flex-col items-center w-32 text-center">
+                        <span className={`font-label-md text-label-md mt-1 ${currentStage >= 1 ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>Registration</span>
+                        <span className="text-xs text-on-surface-variant mt-1">{formatDate(config?.registrationDeadline ?? null)}</span>
+                        {currentStage === 1 && <span className="text-[10px] uppercase tracking-wider text-primary font-bold mt-2">Current</span>}
+                      </div>
+                    </motion.div>
+
+                    {/* Stage 2 */}
+                    <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.4, type: 'spring' }}
+                        className="flex flex-col items-center gap-sm relative group cursor-pointer"
+                    >
+                      {currentStage === 2 && <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-100 transition-opacity"></div>}
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center border-4 border-surface-container-lowest shadow-lg relative z-10 ${currentStage >= 2 ? 'bg-primary text-on-primary ring-4 ring-primary/30' : 'bg-surface-container-high text-on-surface-variant'}`}>
+                        <span className="material-symbols-outlined text-[20px]">person_add</span>
+                      </div>
+                      <div className="absolute top-14 flex flex-col items-center w-32 text-center">
+                        <span className={`font-label-md text-label-md mt-1 ${currentStage >= 2 ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>Team Formation</span>
+                        <span className="text-xs text-on-surface-variant mt-1">{formatDate(config?.teamFormationDate ?? null)}</span>
+                        {currentStage === 2 && <span className="text-[10px] uppercase tracking-wider text-primary font-bold mt-2">Current</span>}
+                      </div>
+                    </motion.div>
+
+                    {/* Stage 3 */}
+                    <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.5, type: 'spring' }}
+                        className="flex flex-col items-center gap-sm relative group cursor-pointer"
+                    >
+                      {currentStage === 3 && <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-100 transition-opacity"></div>}
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center border-4 border-surface-container-lowest shadow-lg relative z-10 ${currentStage >= 3 ? 'bg-primary text-on-primary ring-4 ring-primary/30' : 'bg-surface-container-high text-on-surface-variant'}`}>
+                        <span className="material-symbols-outlined text-[20px]">code</span>
+                      </div>
+                      <div className="absolute top-14 flex flex-col items-center w-32 text-center">
+                        <span className={`font-label-md text-label-md mt-1 ${currentStage >= 3 ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>Hacking Begins</span>
+                        <span className="text-xs text-on-surface-variant mt-1">{formatDate(config?.hackingBeginsDate ?? null)}</span>
+                        {currentStage === 3 && <span className="text-[10px] uppercase tracking-wider text-primary font-bold mt-2">Current</span>}
+                      </div>
+                    </motion.div>
+
+                    {/* Stage 4 */}
+                    <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.7, type: 'spring' }}
+                        className="flex flex-col items-center gap-sm relative group cursor-pointer"
+                    >
+                      {currentStage === 4 && <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-100 transition-opacity"></div>}
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center border-4 border-surface-container-lowest shadow-lg relative z-10 ${currentStage >= 4 ? 'bg-primary text-on-primary ring-4 ring-primary/30' : 'bg-surface-container-high text-on-surface-variant'}`}>
+                        <span className="material-symbols-outlined text-[20px]">upload_file</span>
+                      </div>
+                      <div className="absolute top-14 flex flex-col items-center w-32 text-center">
+                        <span className={`font-label-md text-label-md mt-1 ${currentStage >= 4 ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>Submission</span>
+                        <span className="text-xs text-on-surface-variant mt-1">{formatDate(config?.submissionDeadline ?? null)}</span>
+                        {currentStage === 4 && <span className="text-[10px] uppercase tracking-wider text-primary font-bold mt-2">Current</span>}
+                      </div>
+                    </motion.div>
+
+                    {/* Stage 5 */}
+                    <motion.div 
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.9, type: 'spring' }}
+                        className="flex flex-col items-center gap-sm relative group cursor-pointer"
+                    >
+                      {currentStage === 5 && <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md opacity-100 transition-opacity"></div>}
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center border-4 border-surface-container-lowest shadow-lg relative z-10 ${currentStage >= 5 ? 'bg-primary text-on-primary ring-4 ring-primary/30' : 'bg-surface-container-high text-on-surface-variant'}`}>
+                        <span className="material-symbols-outlined text-[20px]">emoji_events</span>
+                      </div>
+                      <div className="absolute top-14 flex flex-col items-center w-32 text-center">
+                        <span className={`font-label-md text-label-md mt-1 ${currentStage >= 5 ? 'text-primary font-bold' : 'text-on-surface-variant'}`}>Ceremony</span>
+                        <span className="text-xs text-on-surface-variant mt-1">{formatDate(config?.ceremonyDate ?? null)}</span>
+                        {currentStage === 5 && <span className="text-[10px] uppercase tracking-wider text-primary font-bold mt-2">Current</span>}
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
