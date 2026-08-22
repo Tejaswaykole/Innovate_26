@@ -135,7 +135,7 @@ export const AdminHackathonHackathonosPage: React.FC = () => {
             name="name"
             value={config.name}
             onChange={handleChange}
-            placeholder="e.g. Innovate26"
+            placeholder="e.g. Innovative26"
             className="w-full bg-surface-container text-on-surface border border-outline-variant/50 rounded-lg px-4 py-3 font-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
           />
         </div>

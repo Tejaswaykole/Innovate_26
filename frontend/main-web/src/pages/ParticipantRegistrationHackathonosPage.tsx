@@ -111,7 +111,7 @@ export default function ParticipantRegistrationHackathonosPage() {
             INNOVATE'26 Auth
         </div>
         <div>
-            Ac 2024 Innovate26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
+            Ac 2024 Innovative26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
         </div>
         <div className="flex gap-lg">
             <a className="text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>

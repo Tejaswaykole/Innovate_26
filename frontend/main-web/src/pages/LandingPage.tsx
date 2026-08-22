@@ -357,7 +357,7 @@ export default function Component() {
 <div className="max-w-[1280px] mx-auto">
 <div className="text-center max-w-2xl mx-auto mb-16">
 <h3 className="text-on-surface text-3xl md:text-4xl font-bold font-display-lg mb-4">Rules &amp; Guidelines</h3>
-<p className="text-secondary">Integrity and sportsmanship are the foundation of Innovate26.</p>
+<p className="text-secondary">Integrity and sportsmanship are the foundation of Innovative26.</p>
 </div>
 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 <div className="space-y-6">
