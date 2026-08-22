@@ -54,7 +54,7 @@ export default function Component() {
 
 <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-surface-container-lowest border-b border-outline-variant shadow-sm transition-all duration-300">
 <div className="flex items-center gap-md">
-<img src="/logo.png" alt="Innovate'26 Logo" className="h-8 object-contain" />
+<img src="/logo.png" alt="Innovative'26 Logo" className="h-8 object-contain" />
 <span className="font-headline-md text-headline-md font-bold text-primary">{hackathonName} Portal</span>
 </div>
 <div className="flex items-center gap-lg">

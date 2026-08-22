@@ -32,7 +32,7 @@ export default function ParticipantSidebar({ activeTab }: SidebarProps) {
         <aside className="fixed left-0 top-16 bottom-0 w-64 flex flex-col py-4 bg-surface-container-low border-r border-outline-variant z-40 hidden md:flex transition-all duration-300">
             <div className="px-lg pb-md mb-md border-b border-outline-variant">
                 <div className="flex items-center gap-sm mb-sm">
-                    <img src="/logo.png" alt="Innovate'26 Logo" className="w-12 h-12 object-contain bg-white rounded-lg p-1" />
+                    <img src="/logo.png" alt="Innovative'26 Logo" className="w-12 h-12 object-contain bg-white rounded-lg p-1" />
                     <div>
                         <h2 className="font-label-md text-label-md text-primary font-bold flex items-center gap-1">
                             {hackathonName}

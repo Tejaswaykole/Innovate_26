@@ -10,7 +10,7 @@ export default function Component() {
 <div className="px-lg pb-lg">
 <div className="flex items-center gap-sm mb-xs">
 <img alt="University Logo" className="w-8 h-8 object-contain rounded" data-alt="A sleek, modern corporate logo featuring an abstract geometric shape in primary blue and dark slate, set against a clean white background, conveying technical precision and professional excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUotP-0ZDLI-xNnl9_WVgranEG9HFYsCudp0qDV2FAMGeq6vMgAa8nwvHW96bH5b3dl64hYG60oJXgPjnY1qRRY09bdheUPHwhOrZkCM81Q3hkiQDp3uetQZ8w4EgI1xgtdXPiRaxqqdRLSIsTFEJGSJWd6uBX5L2hEurmmeL1maHUoYrk2pqd-V7gK-RxTzESUk7DhIs3bCQpKPOhSuPa_244xY1SQ-oB_1ESGp3GrgWmuRK0IcoJ"/>
-<h1 className="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">INNOVATE'26</h1>
+<h1 className="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">INNOVATIVE'26</h1>
 </div>
 <p className="font-label-md text-label-md text-on-surface-variant dark:text-on-secondary-fixed-variant">Admin Dashboard</p>
 </div>

@@ -56,7 +56,7 @@ export default function Component() {
 
 <footer className="w-full py-8 mt-auto border-t border-outline-variant bg-surface-container-low z-10 flex flex-col md:flex-row justify-between items-center px-gutter gap-4">
 <div className="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">
-            © 2024 INNOVATE'26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
+            © 2024 INNOVATIVE'26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
         </div>
 <div className="flex gap-4">
 <a className="font-caption text-caption text-on-surface-variant hover:text-primary transition-all" href="#">Privacy Policy</a>

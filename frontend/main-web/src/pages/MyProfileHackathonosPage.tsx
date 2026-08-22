@@ -23,7 +23,7 @@ export default function Component() {
 
 <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant shadow-sm hidden md:flex">
 <div className="flex items-center gap-4">
-<span className="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">INNOVATE'26 Portal</span>
+<span className="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">INNOVATIVE'26 Portal</span>
 </div>
 <div className="flex items-center gap-4">
 <span className="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95 hover:bg-surface-container-low transition-colors p-2 rounded-full" data-icon="notifications">notifications</span>

@@ -12,7 +12,7 @@ export default function Component() {
 <div className="px-lg mb-4 flex items-center gap-3">
 <img alt="University Logo" className="w-10 h-10 rounded-lg object-cover" data-alt="A professional, modern university crest or logo designed for a technology department. Crisp lines, academic feel, deep blue and slate colors, clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXnmbt3-jrCBR5mEfOHvNoL9y_aIV3VKeh2hWV-7SPxvdlrbJ_wx8hiizmSu7vuRUold_ENMUbQzBa_dvfJWFu0VGtZYrp37q5m4BJ6F2nMOmyD38DeaO8rYaAMWRu-OJfgyAO-WIJEcnGVvbjN9kVnFkH9CzpRYLJJEnkYFqzYmm1NCNKBMgnU03uxCmp3cKpYSWrw-UE_V8ImK5AykxoGL7SYg0cZ1WVjugL2elZy5x2ZxJtegb5"/>
 <div>
-<h1 className="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">INNOVATE'26</h1>
+<h1 className="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">INNOVATIVE'26</h1>
 <p className="text-secondary dark:text-secondary-fixed-dim font-caption text-caption mt-1">Admin Dashboard</p>
 </div>
 </div>

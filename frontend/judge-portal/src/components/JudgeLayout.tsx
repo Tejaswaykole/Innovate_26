@@ -22,14 +22,14 @@ export default function JudgeLayout() {
     <div className="min-h-screen bg-surface flex flex-col md:flex-row">
       {/* Mobile Header (visible only on small screens) */}
       <header className="md:hidden bg-white border-b border-outline-variant p-4 flex justify-between items-center sticky top-0 z-10">
-        <img src="/logo.png" alt="Innovate'26 Logo" className="h-8 object-contain" />
+        <img src="/logo.png" alt="Innovative'26 Logo" className="h-8 object-contain" />
         <button onClick={handleLogout} className="text-sm font-bold text-secondary">Logout</button>
       </header>
 
       {/* Sidebar */}
       <aside className="hidden md:flex flex-col w-64 bg-white border-r border-outline-variant sticky top-0 h-screen overflow-y-auto">
         <div className="p-6 border-b border-outline-variant">
-          <img src="/logo.png" alt="Innovate'26 Logo" className="h-10 mb-4 object-contain" />
+          <img src="/logo.png" alt="Innovative'26 Logo" className="h-10 mb-4 object-contain" />
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg">
               {(profile?.fullName || currentUser?.email || 'J')[0].toUpperCase()}

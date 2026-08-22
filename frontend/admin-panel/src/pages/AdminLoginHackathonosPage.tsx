@@ -63,9 +63,9 @@ export default function AdminLoginHackathonosPage() {
 
           <header className="pt-10 px-8 pb-6 text-center">
             <div className="inline-flex items-center justify-center w-24 h-24 mb-6 shadow-lg rounded-2xl bg-white p-2">
-              <img src="/logo.png" alt="Innovate'26 Logo" className="w-full h-full object-contain" />
+              <img src="/logo.png" alt="Innovative'26 Logo" className="w-full h-full object-contain" />
             </div>
-            <h1 className="text-3xl font-bold text-white mb-1 tracking-tight">INNOVATE'26 Pro</h1>
+            <h1 className="text-3xl font-bold text-white mb-1 tracking-tight">INNOVATIVE'26 Pro</h1>
             <h2 className="text-sm text-primary tracking-[0.2em] uppercase font-medium">Admin Portal</h2>
           </header>
 
@@ -90,7 +90,7 @@ export default function AdminLoginHackathonosPage() {
                     className="block w-full pl-11 pr-4 py-3.5 font-body-md text-white bg-white/5 border border-white/10 rounded-xl placeholder-slate-500 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300 outline-none backdrop-blur-sm"
                     id="email"
                     name="email"
-                    placeholder="admin@INNOVATE'26.io"
+                    placeholder="admin@INNOVATIVE'26.io"
                     required
                     type="email"
                     value={email}

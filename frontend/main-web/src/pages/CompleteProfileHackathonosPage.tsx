@@ -97,7 +97,7 @@ export default function Component() {
 <div className="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
 <div className="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
 <span className="material-symbols-outlined text-primary-container" style={{ "fontVariationSettings": "'FILL' 1" }}>terminal</span>
-                INNOVATE'26 Auth
+                INNOVATIVE'26 Auth
             </div>
 <div className="hidden md:flex">
 <button className="text-secondary hover:text-primary-container transition-colors font-label-md text-label-md px-4 py-2 cursor-pointer active:scale-95 duration-200">
@@ -118,7 +118,7 @@ export default function Component() {
 <span className="material-symbols-outlined text-lg" style={{ "fontVariationSettings": "'FILL' 1" }}>check_circle</span>
                     Step 1 of 1: Profile Confirmation
                 </div>
-<h1 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg mb-sm">Welcome to INNOVATE'26</h1>
+<h1 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg mb-sm">Welcome to INNOVATIVE'26</h1>
 <p className="font-body-md text-body-md text-secondary max-w-lg">Please verify your registration details below before accessing the participant dashboard.</p>
 </div>
 
@@ -238,7 +238,7 @@ export default function Component() {
 <footer className="bg-surface-container-low dark:bg-surface-container-lowest w-full py-8 mt-auto border-t border-outline-variant">
 <div className="flex flex-col md:flex-row justify-between items-center px-gutter gap-4 max-w-container-max mx-auto">
 <div className="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">
-                INNOVATE'26 Auth
+                INNOVATIVE'26 Auth
             </div>
 <div className="flex gap-4 items-center">
 <a className="font-caption text-caption text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all" href="#">Privacy Policy</a>
@@ -246,7 +246,7 @@ export default function Component() {
 <a className="font-caption text-caption text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all" href="#">Contact Organizer</a>
 </div>
 <div className="font-caption text-caption text-secondary dark:text-secondary-fixed-dim">
-                © 2024 INNOVATE'26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
+                © 2024 INNOVATIVE'26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
             </div>
 </div>
 </footer>

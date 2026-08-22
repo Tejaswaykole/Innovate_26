@@ -12,7 +12,7 @@ export default function Component() {
 <header className="fixed top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md z-50 shadow-sm border-b border-outline-variant dark:border-outline">
 <div className="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
 <div className="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim cursor-pointer active:scale-95 duration-200">
-                INNOVATE'26 Auth
+                INNOVATIVE'26 Auth
             </div>
 <div className="flex items-center gap-4">
 <a className="text-secondary dark:text-secondary-fixed-dim hover:text-primary-container dark:hover:text-primary-fixed transition-colors cursor-pointer active:scale-95 duration-200 font-label-md text-label-md" href="#">
@@ -90,7 +90,7 @@ export default function Component() {
 
 <footer className="w-full py-8 mt-auto bg-surface-container-low dark:bg-surface-container-lowest border-t border-outline-variant flex flex-col md:flex-row justify-between items-center px-gutter gap-4 relative z-10">
 <div className="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">
-            © 2024 INNOVATE'26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
+            © 2024 INNOVATIVE'26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
         </div>
 <div className="flex items-center gap-6">
 <a className="font-caption text-caption text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-all text-on-surface-variant" href="#">Privacy Policy</a>

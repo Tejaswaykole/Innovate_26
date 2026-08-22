@@ -9,7 +9,7 @@ export default function Component() {
 <nav className="hidden md:flex bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-outline-variant/30 dark:border-outline/20 shadow-sm dark:shadow-none font-body-md text-body-md">
 <div className="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto w-full">
 <div className="flex items-center gap-lg">
-<div className="font-headline-md text-headline-md font-extrabold text-primary dark:text-inverse-primary tracking-tight">INNOVATE'26 Pro</div>
+<div className="font-headline-md text-headline-md font-extrabold text-primary dark:text-inverse-primary tracking-tight">INNOVATIVE'26 Pro</div>
 
 <div className="relative w-64 ml-4">
 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">search</span>

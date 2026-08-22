@@ -13,7 +13,7 @@ export default function Component() {
 <img alt="University Logo" className="w-full h-full object-cover" data-alt="A clean, minimalist abstract logo for a fictional university, featuring geometric shapes in shades of primary blue and deep navy on a crisp white background, modern corporate SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbSLz1cV_yIpBl_zgO4ZU2JhuoThqX3qNHouIyxzN9TZ_j61GOxc1R1-XSywj0KgdeXNG3JvZpziZHEvtbCTGpMUVBOmIbBWEpiZfriv3cvsognkHiZ0KJEJ6Ow25UBE-H5aywAhD8qsvNKGqctTvSjpEbGji6dooeEFezJsEmXIWfMFmFXUj6Iz7FRMY8QEolDNAMV46WQFHa7jSuqlCcODOg0gN7VWE6xqEbccvIwJhM6oakI-if"/>
 </div>
 <div>
-<h1 className="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">INNOVATE'26</h1>
+<h1 className="font-headline-md text-headline-md font-bold text-on-surface tracking-tight">INNOVATIVE'26</h1>
 <p className="font-caption text-caption text-secondary">Admin Dashboard</p>
 </div>
 </div>

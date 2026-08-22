@@ -10,7 +10,7 @@ export default function Component() {
 <div className="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
 <div className="flex items-center gap-2 font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">
 <span className="material-symbols-outlined" data-weight="fill" style={{ "fontVariationSettings": "'FILL' 1" }}>terminal</span>
-                INNOVATE'26 Auth
+                INNOVATIVE'26 Auth
             </div>
 <div className="flex items-center gap-6 hidden md:flex">
 
@@ -118,7 +118,7 @@ export default function Component() {
 <footer className="bg-surface-container-low dark:bg-surface-container-lowest w-full py-8 mt-auto border-t border-outline-variant">
 <div className="flex flex-col md:flex-row justify-between items-center px-gutter gap-4 max-w-container-max mx-auto">
 <div className="font-caption text-caption text-secondary dark:text-secondary-fixed-dim">
-                © 2024 INNOVATE'26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
+                © 2024 INNOVATIVE'26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
             </div>
 <div className="flex flex-wrap gap-4 items-center justify-center">
 <a className="font-caption text-caption text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-all" href="#">Privacy Policy</a>

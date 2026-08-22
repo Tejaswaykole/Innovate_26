@@ -44,7 +44,7 @@ const AdminLayout: React.FC = () => {
         }`}
       >
         <div className="h-16 flex items-center px-6 border-b border-outline-variant/30">
-          <img src="/logo.png" alt="Innovate'26 Logo" className="h-8 mr-3 object-contain" />
+          <img src="/logo.png" alt="Innovative'26 Logo" className="h-8 mr-3 object-contain" />
           <h1 className="font-headline-sm text-headline-sm text-on-surface truncate">Admin Portal</h1>
         </div>
 

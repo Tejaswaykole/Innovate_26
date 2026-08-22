@@ -73,7 +73,7 @@ export default function ParticipantRegistrationHackathonosPage() {
       <main className="flex-grow flex items-center justify-center p-md md:p-gutter">
         <div className="w-full max-w-md bg-surface-container-lowest rounded-xl border border-surface-variant elevation-1 p-xl">
           <div className="text-center mb-xl flex flex-col items-center">
-            <img src="/logo.png" alt="Innovate'26 Logo" className="h-16 object-contain mb-4" />
+            <img src="/logo.png" alt="Innovative'26 Logo" className="h-16 object-contain mb-4" />
             <h1 className="font-headline-lg text-headline-lg text-on-surface mb-xs">Create your account</h1>
             <p className="font-body-md text-body-md text-on-surface-variant">Join the Hackathon Platform</p>
           </div>
@@ -108,7 +108,7 @@ export default function ParticipantRegistrationHackathonosPage() {
 
       <footer className="w-full py-8 mt-auto bg-surface-container-low border-t border-outline-variant flex flex-col md:flex-row justify-between items-center px-gutter gap-4 text-secondary font-caption text-caption">
         <div className="font-label-md text-label-md uppercase tracking-widest text-on-surface-variant">
-            INNOVATE'26 Auth
+            INNOVATIVE'26 Auth
         </div>
         <div>
             Ac 2024 Innovative26 Department of Computer Engineering, T.M.E's J.T.M. College of Engineering, Faizpur. Built for innovators.
